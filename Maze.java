@@ -26,11 +26,20 @@ public class Maze{
 
     public Maze(String filename) throws FileNotFoundException{
         //COMPLETE CONSTRUCTOR
-        File maze = new File(filename);
-        Scanner inf = new Scanner(Maze1);
-        while (inf.hasNextChar()) {
-          char line = inf.nextChar();
-          
+        int r = 0;
+        File file = new File(filename);
+        Scanner inf = new Scanner(file);
+        while (inf.hasNextLine()) {
+          String line = inf.nextLine();
+          for (int c = 0; c < line.length(); c++) {
+            if (line.charAt(r) == '\n') {
+              System.out.print('\n');
+              r++;
+            } else {
+              maze[r][c] = line.charAt(c);
+              System.out.print(maze[r][c]);
+            }
+          }
         }
     }
 
@@ -68,7 +77,7 @@ public class Maze{
 
     */
     public int solve(){
-
+return 0;
             //find the location of the S.
 
 
