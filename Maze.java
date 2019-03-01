@@ -32,7 +32,7 @@ public class Maze{
         while (inf.hasNextLine()) {
           String line = inf.nextLine();
           for (int c = 0; c < line.length(); c++) {
-            if (line.charAt(r) == '\n') {
+            if (line.charAt(c) == '\n') {
               System.out.print('\n');
               r++;
             } else {
