@@ -26,20 +26,25 @@ public class Maze{
 
     public Maze(String filename) throws FileNotFoundException{
         //COMPLETE CONSTRUCTOR
-        int r = 0;
+        int rows = 0;
+        int cols = 0;
         File file = new File(filename);
         Scanner inf = new Scanner(file);
+        cols = inf.nextLine().length();
         while (inf.hasNextLine()) {
-          String line = inf.nextLine();
-          for (int c = 0; c < line.length(); c++) {
-            if (line.charAt(c) == '\n') {
-              System.out.print('\n');
-              r++;
-            } else {
-              maze[r][c] = line.charAt(c);
-              System.out.print(maze[r][c]);
-            }
+          rows++;
+        }
+        maze = new char[rows][cols];
+        int r = 0;
+        Scanner inf2 = new Scanner(file);
+        while (inf2.hasNextLine()) {
+          String line2 = inf2.nextLine();
+          for (int c = 0; c < line2.length(); c++) {
+
+              maze[r][c] = line2.charAt(c);
+
           }
+          r++;
         }
     }
 
@@ -68,7 +73,16 @@ public class Maze{
 
     }
 
-
+    public String toString() {
+      String str = "";
+      for (int i = 0; i < maze.length; i++) {
+        for (int j = 0; j < maze[i].length; j++) {
+          str += maze[i][j];
+        }
+        str += "\n";
+      }
+      return str;
+    }
 
     /*Wrapper Solve Function returns the helper function
 
