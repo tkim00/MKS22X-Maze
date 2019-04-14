@@ -133,29 +133,34 @@ public class Maze{
         if(animate){
 
             clearTerminal();
+            System.out.println(counter);
             System.out.println(this);
 
-            wait(100);
+            wait(50);
         }
 
         //COMPLETE SOLVE
-
+        int c;
         if (maze[row][col] == 'E') {
           return counter;
         }
         if (maze[row][col] == ' ') {
           maze[row][col] = '@';
-          if(solve(row+1, col, counter+1) != -1) {
-            return counter+1;
+          c = solve(row+1, col, counter+1);
+          if(c != -1) {
+            return c;
           }
-          if(solve(row-1, col, counter+1) != -1) {
-            return counter+1;
+          c = solve(row-1, col, counter+1);
+          if(c != -1) {
+            return c;
           }
-          if(solve(row, col+1, counter+1) != -1) {
-            return counter+1;
+          c = solve(row, col+1, counter+1);
+          if(c != -1) {
+            return c;
           }
-          if(solve(row, col-1, counter+1) != -1) {
-            return counter+1;
+          c = solve(row, col-1, counter+1);
+          if(c != -1) {
+            return c;
           }
           maze[row][col] = '.';
         }

@@ -3,10 +3,16 @@ import java.io.*;
 public class Tester {
   public static void main(String[] args) {
     try {
-      Maze maze1 = new Maze("data1.dat");
+      Maze maze1 = new Maze("data3.dat");
+      maze1.setAnimate(true);
+      System.out.println(maze1.solve());
       System.out.println(maze1);
+      // Maze maze2 = new Maze("data2.dat");
+      // System.out.println(maze2);
+      // Maze maze3 = new Maze("data3.dat");
+      // System.out.println(maze3);
     } catch(FileNotFoundException e) {
-      System.out.println("something went wrong");
+      System.out.println("the file is not found");
     }
     // char[][] maze;
     // int rows = 0;
