@@ -139,34 +139,26 @@ public class Maze{
         }
 
         //COMPLETE SOLVE
+
         if (maze[row][col] == 'E') {
           return counter;
         }
-        // if (maze[row][col] == '#' || maze[row][col] == '.' || maze[row][col] == '@') {
-        //   return -1;
-        // }
-        maze[row][col] = '@';
-        if (maze[row+1][col] == ' ') {
-          solve(row+1, col, counter+1);
+        if (maze[row][col] == ' ') {
+          maze[row][col] = '@';
+          if(solve(row+1, col, counter+1) != -1) {
+            return counter+1;
+          }
+          if(solve(row-1, col, counter+1) != -1) {
+            return counter+1;
+          }
+          if(solve(row, col+1, counter+1) != -1) {
+            return counter+1;
+          }
+          if(solve(row, col-1, counter+1) != -1) {
+            return counter+1;
+          }
+          maze[row][col] = '.';
         }
-        else if (maze[row-1][col] == ' ') {
-          solve(row-1, col, counter+1);
-        }
-        else if (maze[row][col+1] == ' ') {
-          solve(row, col+1, counter+1);
-        }
-        else if (maze[row][col-1] == ' ') {
-          solve(row, col-1, counter+1);
-        }
-        maze[row][col] = '.';
-        // if (maze[row][col] == ' ') {
-        //   maze[row][col] = '@';
-        //   solve(row+1, col, counter+1);
-        //   solve(row-1, col, counter+1);
-        //   solve(row, col+1, counter+1);
-        //   solve(row, col-1, counter+1);
-        //   maze[row][col] = '.';
-        // }
 
         return -1; //so it compiles
     }
