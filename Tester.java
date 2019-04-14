@@ -5,7 +5,7 @@ public class Tester {
     try {
       Maze maze1 = new Maze("data1.dat");
       System.out.println(maze1);
-    } catch(Exception FileNotFoundException) {
+    } catch(FileNotFoundException e) {
       System.out.println("something went wrong");
     }
     // char[][] maze;

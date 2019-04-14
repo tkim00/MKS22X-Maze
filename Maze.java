@@ -33,16 +33,17 @@ public class Maze{
         cols = inf.nextLine().length();
         while (inf.hasNextLine()) {
           rows++;
+          inf.nextLine();
         }
         maze = new char[rows][cols];
         int r = 0;
-        Scanner inf2 = new Scanner(file);
-        while (inf2.hasNextLine()) {
-          String line2 = inf2.nextLine();
-          for (int c = 0; c < line2.length(); c++) {
-
-              maze[r][c] = line2.charAt(c);
-
+        inf = new Scanner(file);
+        while (inf.hasNextLine()) {
+          String line = inf.nextLine();
+          //System.out.println(line.length());
+          for (int c = 0; c < line.length(); c++) {
+            maze[r][c] = line.charAt(c);
+            //System.out.print(maze[r][c]);
           }
           r++;
         }
