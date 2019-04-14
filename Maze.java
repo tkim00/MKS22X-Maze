@@ -26,7 +26,8 @@ public class Maze{
 
     public Maze(String filename) throws FileNotFoundException{
         //COMPLETE CONSTRUCTOR
-        int rows = 0;
+        animate = false;
+        int rows = 1;
         int cols = 0;
         File file = new File(filename);
         Scanner inf = new Scanner(file);
@@ -45,6 +46,7 @@ public class Maze{
             maze[r][c] = line.charAt(c);
             //System.out.print(maze[r][c]);
           }
+          //System.out.println(r);
           r++;
         }
     }
@@ -92,17 +94,19 @@ public class Maze{
 
     */
     public int solve(){
-return 0;
-            //find the location of the S.
-
-
-            //erase the S
-
-
-            //and start solving at the location of the s.
-
-            //return solve(???,???);
-
+      int r = 0;
+      int c = 0;
+      for (int i = 0; i < maze.length; i++) {
+        for (int j = 0; j < maze[0].length; j++) {
+          if (maze[i][j] == 'S') {
+            r = i;
+            c = j;
+            maze[i][j] = ' ';
+            break;
+          }
+        }
+      }
+      return solve(r, c, 0);
     }
 
     /*
@@ -122,7 +126,7 @@ return 0;
 
         All visited spots that are part of the solution are changed to '@'
     */
-    private int solve(int row, int col){ //you can add more parameters since this is private
+    private int solve(int row, int col, int counter){ //you can add more parameters since this is private
 
 
         //automatic animation! You are welcome.
@@ -131,10 +135,38 @@ return 0;
             clearTerminal();
             System.out.println(this);
 
-            wait(20);
+            wait(100);
         }
 
         //COMPLETE SOLVE
+        if (maze[row][col] == 'E') {
+          return counter;
+        }
+        // if (maze[row][col] == '#' || maze[row][col] == '.' || maze[row][col] == '@') {
+        //   return -1;
+        // }
+        maze[row][col] = '@';
+        if (maze[row+1][col] == ' ') {
+          solve(row+1, col, counter+1);
+        }
+        else if (maze[row-1][col] == ' ') {
+          solve(row-1, col, counter+1);
+        }
+        else if (maze[row][col+1] == ' ') {
+          solve(row, col+1, counter+1);
+        }
+        else if (maze[row][col-1] == ' ') {
+          solve(row, col-1, counter+1);
+        }
+        maze[row][col] = '.';
+        // if (maze[row][col] == ' ') {
+        //   maze[row][col] = '@';
+        //   solve(row+1, col, counter+1);
+        //   solve(row-1, col, counter+1);
+        //   solve(row, col+1, counter+1);
+        //   solve(row, col-1, counter+1);
+        //   maze[row][col] = '.';
+        // }
 
         return -1; //so it compiles
     }
